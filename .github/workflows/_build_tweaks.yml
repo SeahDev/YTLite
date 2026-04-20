@@ -54,6 +54,10 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - name: Checkout YTLite source
+        if: ${{ inputs.build_from_source }}
+        uses: actions/checkout@v6
+
       - name: Install Dependencies
         run: brew install make ldid dpkg
 
