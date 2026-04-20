@@ -52,8 +52,8 @@ on:
         default: false
 
       tweak_version:
-        description: "The version of the tweak to use (leave empty to build from source)"
-        default: ""
+        description: "Version of pre-built tweak (leave empty if building from source)"
+        default: "5.2"
         required: false
         type: string
 
@@ -89,7 +89,8 @@ jobs:
       enable_ryd: ${{ inputs.enable_ryd }}
       enable_ytabc: ${{ inputs.enable_ytabc }}
       enable_demc: ${{ inputs.enable_demc }}
-      tweak_version: ${{ inputs.build_from_source == true && '' || inputs.tweak_version }}
+      tweak_version: ${{ inputs.tweak_version }}
+      build_from_source: ${{ inputs.build_from_source }}
 
   package:
     name: Package IPA
