@@ -45,10 +45,16 @@ on:
         required: true
         type: string
 
-      tweak_version:
-        description: "The version of the tweak to use. Enter the version manually from dayanch96/YTLite/releases or leave default"
-        default: "5.2"
+      build_from_source:
+        description: "Build YTLite from source instead of downloading pre-built binary"
+        type: boolean
         required: true
+        default: false
+
+      tweak_version:
+        description: "The version of the tweak to use (leave empty to build from source)"
+        default: ""
+        required: false
         type: string
 
       display_name:
@@ -83,7 +89,7 @@ jobs:
       enable_ryd: ${{ inputs.enable_ryd }}
       enable_ytabc: ${{ inputs.enable_ytabc }}
       enable_demc: ${{ inputs.enable_demc }}
-      tweak_version: ${{ inputs.tweak_version }}
+      tweak_version: ${{ inputs.build_from_source == true && '' || inputs.tweak_version }}
 
   package:
     name: Package IPA
